@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horror Site</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="content">
+        <h1>Welcome to the Horror Site!</h1>
+        <p>This site will give you chills...</p>
+        <button id="play-audio-button">Play Audio</button>
+        <audio id="horror-audio" src="{{ url_for('static', filename='horror.mp3') }}"></audio>
+        <div id="video-container" class="video-hidden">
+            <video id="horror-video" controls>
+                <source src="{{ url_for('static', filename='horror_video.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const playAudioButton = document.getElementById('play-audio-button');
+            const horrorAudio = document.getElementById('horror-audio');
+            const videoContainer = document.getElementById('video-container');
+            const horrorVideo = document.getElementById('horror-video');
+
+            playAudioButton.addEventListener('click', function() {
+                // 音声を再生する
+                horrorAudio.play();
+
+                // 音声再生が終了したら動画を表示して再生する
+                horrorAudio.addEventListener('ended', function() {
+                    // 音声を停止する
+                    horrorAudio.pause();
+                    horrorAudio.currentTime = 0; // 再生位置を初期化
+
+                    // 動画を表示して再生する
+                    videoContainer.style.display = 'block';
+                    horrorVideo.play();
+                });
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #333;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</body>
+</html>

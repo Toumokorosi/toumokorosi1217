@@ -1,0 +1,35 @@
+/* static/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background-image: url('../static/images.jpg');
+    background-size: cover; /* 画像を画面全体に広げる */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#content {
+    padding-top: 50px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+#play-audio-button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+#video-container {
+    display: none; /* 最初は非表示 */
+    margin: 0 auto; /* 水平中央揃え */
+    max-width: 100%; /* 動画の最大幅を設定 */
+}
